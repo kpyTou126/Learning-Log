@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9-u$7zrjzv5ej+%9$@36q1mjtfo&s9)9!hkl3yfdi7=!yah^wt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     # Мои приложения
     'learning_logs',
     'users',
+
+    # Сторонние приложения
+    'bootstrap4',
     
     # Приложения django по умолчанию
     'django.contrib.admin',
@@ -108,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tbilisi'
 
 USE_I18N = True
 
@@ -126,3 +129,12 @@ STATIC_URL = '/static/'
 
 # Мои настройки
 LOGIN_URL = '/users/login/'
+
+# Настройки Heroku
+import django_heroku
+django_heroku.settings(locals())
+
+if os.environ.get('DEBUG') == 'TRUE':
+    DEBUG = True
+elif os.environ.get('DEBUG') == 'FALSE':
+    DEBUG = False
